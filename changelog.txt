@@ -1,0 +1,513 @@
+==========================
+EclipseVB v2.5.0 -> v2.5.1
+==========================
+
+- Fixed the instant disconnect when changing map morals.
+- Fixed quests not being completed despite completing all of the objectives.
+- Fixed quest progress messages being displayed despite not being on those quests.
+- Fixed quest items not being taken away on completion.
+- Fixed the quest log not being repopulated on quest completion.
+- Updated the default quest.
+
+==========================
+EclipseVB v2.4.0 -> v2.5.0
+==========================
+
+- Tightened up input and movement.
+- Reduced the default constants.
+- Versions are now handled through constants in modConstants (both sides).
+- Fixed the quest editor not allowing you to change item/conversation indexes & values.
+- Cleaned up and optimised the gameloop slightly.
+- Fixed the fps counter.
+- Level, class and quest requirements can now be set for quests.
+- Increased the length of quest names (uses NAME_LENGTH now).
+- NPCs can now have specific conversation chats set for specific quest stages.
+- Added quest progress messages (i.e. "5/10 worms killed").
+- Added a 10 second delay to logging out on PVP maps (prevents logging out to survive).
+- Removed the "PK" system.
+- Fixed item and conversation quests.
+- Replaced quest tasks with quest objectives. Objectives can be progressed simultaneously.
+- Dozens of misc. quest system bug fixes and changes.
+- Fixed attacking/talking to NPCs not working sometimes.
+- Walking whilst in a conversation now closes the conversation.
+- The starting map, x and y are now handled in the server's options.ini.
+- The client will now go back to the main menu after losing connection to the server.
+- Fixed instant cast spells not leaving the spell buffer.
+- The "docs" folder is now located in the root folder.
+- Added documentation for making quests.
+- Fixed player stunning. [Credits: Justin]
+
+==========================
+EclipseVB v2.3.0 -> v2.4.0
+==========================
+
+- Fixed the attack animation not being sent unless damage is done. [Credits: iRicardo]
+- Fixed the delete button in the shop editor.
+- Added a new centralised editor. Usage: /editgame.
+- Removed the serverside logging system.
+- The server connection timeout is now a constant.
+- Cleaned up the conversation, item, resource and npc editors.
+- Removed the RAW parameter from the FileExist function (serverside).
+- The hotbar now uses 0-9, - and = in place of the function keys.
+- Removed the system tray functionality.
+- The server now comes with a "docs" folder that contains useful tutorials.
+- The runtimes are now included in the client folder.
+- Removed the checks for admin PVPing.
+- Fixed being able to re-cast a spell while already casting it.
+- Fixed consumable items not being removed from the hotbar.
+- Added a blocking algorithm to CanPlayerBlock. [Credits: Yukiyo]
+- Fixed being able to use the hotbar whilst in a bank, trade or shop.
+- Created a constant for the minimum pvp level: MIN_PVP_LEVEL.
+- Fixed the chat not clearing when it loses focus.
+- Fixed not being able to withdraw currencies.
+- Removed the unused "mastery" and "handed" variables in the ItemRec.
+- The MOTD can now be set from the server console.
+- 3 random items (excluding gold) are now dropped on death.
+- NPCs will now react to 0-damage attacks.
+- Fixed targets not clearing on death. [Credits: ValentineBr]
+- Removed the shop buy and sell buttons.
+- Shop buying is now done through double-clicking in the shop window.
+- Shop selling is now done through double-clicking the inventory item.
+- Fixed the damage label not displaying "defence" for armour and shields.
+- Fixed quests not being cleared in the quest log on quest finish.
+- Added support for RMXP-style autotiles. [Credits: Robin]
+- Fixed NPC interactions not being registered sometimes.
+- Added a constant for MAX_BLOOD.
+
+==========================
+EclipseVB v2.2.1 -> v2.3.0
+==========================
+
+- Optimisations and code cleanups.
+
+==========================
+EclipseVB v2.2.0 -> v2.2.1
+==========================
+
+- Removed Binds and replaced them with Tradable and Untradable items.
+- The three most valuable items in your inventory are now dropped on death.
+- Fixed "You are already on this quest" message
+- Fixed global messages crashing the client.
+- The quest list now automatically updates.
+- Fixed an issue with UpdateMapLogic.
+
+==========================
+EclipseVB v2.1.4 -> v2.2.0
+==========================
+
+- Fixed picConv not clearing on logout.
+- Music and sound can now have any (supported) extension.
+- Added a cooldown to item consuming.
+- Added a quest system. Usage: /editquest.
+- Game data is now cleared on login. [Credits: iRicardo]
+- Fixed recently learnt spells not being sent. [Credits: iRicardo]
+- Fixed the slide attribute. [Credits: iRicardo, ValentineBr]
+- Fixed targets not being cleared on logout. [Credits: iRicardo]
+- Fixed defence not being taken into account. [Credits: Ryoku for the formula]
+- Fixed resources not being able to be collected without a weapon.
+- Added a serverside button for clearing all online players' quests (useful for debugging).
+
+==========================
+EclipseVB v2.1.3 -> v2.1.4
+==========================
+
+- Fixed an error when loading the game with music off.
+- Fixed string lengths not matching up on convs.
+- Fixed crashing when creating a new character.
+- Removed old form files.
+
+==========================
+EclipseVB v2.1.2 -> v2.1.3
+==========================
+
+- Fixed sounds playing even if disabled.
+- Fixed music not turning off when disabling it.
+- Fixed the kick button not doing anything. [Credits: iRicardo]
+
+==========================
+EclipseVB v2.1.1 -> v2.1.2
+==========================
+
+- Fixed being able to restart the same conversation.
+- Fixed the "CurChat" scrollbar being able to exceed the ChatCount.
+- Clicking the chatbox will now set focus on the chat bar.
+- Fixed the "delete" button in the conversation editor.
+- Fixed the sound combobox in the conversation editor.
+- Fixed the bad centering on conversation replies.
+- Changed the length of conversation text and replies.
+- Added tab to target.
+
+==========================
+EclipseVB v2.1.0 -> v2.1.1
+==========================
+
+- Conversations can now have faces (added in the NPC editor).
+- Fixed NPCs and players being able to move whilst chatting.
+- Fixed being able to move while picCurrency was visible in banks.
+- Added a warping (map, x, y) event to the conversation system.
+- Added a "heal player" event to the conversation system.
+- Added sounds to the conversation system.
+
+==========================
+EclipseVB v2.0.2 -> v2.1.0
+==========================
+
+- Fixed not being able to move after relogging in a bank.
+- Changed the timeout for connections to 5 seconds (up from 3).
+- Removed the unused CharSlot parameter in SendUseChar.
+- Changed the longs in Get/SetPlayerPK to bytes.
+- Removed the useless YES and NO boolean constants.
+- Fixed the data/packet flooding timer not resetting.
+- Fixed the attack timer not being checked when using resources. [Credits: ValentineBr]
+- Added the constants for missing editors serverside.
+- Fixed the frame skipping when NPCs walk.
+- Fixed having to click "Okay" to update attributes.
+- Stopped data being sent to maps with 0 players.
+- Various gameloop & networking optimisations. [Including some by iRicardo].
+- Added a new conversation system! Use /editconv. [Thanks to Matthew and Richy too!]
+- Fixed the stat bonuses carrying over to new items in the item editor.
+
+==========================
+EclipseVB v2.0.1 -> v2.0.2
+==========================
+
+- Added a messagebox displaying the packet that caused a packet error.
+- Fixed the PlayerDir packet being sent too often. [Credits: Rob Janes]
+- Optimised the Set/GetPlayerDir functions to use bytes instead of longs.
+- Added multiple drops with percentile chances for NPCs.
+- Fixed being able to type in the chatbox.
+- Replaced the old DirectSound engine with BASS.
+- Removed the "RAW" parameter from the FileExist function.
+- Fixed the memory leak with text rendering. [Credits: Lightning]
+- Added minimise and close buttons to editor forms.
+- Modified the NPC editor to add the new conversation options.
+- Fixed players with names = name_length not being able to login. [Credits: Richy]
+
+==========================================
+Eclipse Origins v2.0.0 -> EclipseVB v2.0.1
+==========================================
+
+- Fixed a level up security hole. [Credits: Robin]
+- Fixed spells with indexes over 35. [Credits: Niall]
+- Fixed player messages. [Credits: Xlithan]
+- Fixed the hotbar. [Credits: Robin]
+- Fixed picSpells not refreshing. [Credits: Helladen]
+- Fixed NPC_HighIndexes. [Credits: Helladen]
+- Fixed an overflow error in the currency menu. [Credits: Helladen]
+- Fixed some trading system crashes. [Credits: Ryoku Hasu]
+- Fixed targetted heal HP/MP and Damage HP Spells. [Credits: Joyce]
+- Fixed animations in the NPC editor not saving. [Credits: Sotvotkong]
+- Fixed GetPlayerClass clientside. [Credits: Riiicardoo]
+- Friendly NPCs must now have 1 point in each stat. [Credits: Scootaloo]
+- Fixed the EXP bar only working for the first player. [Credits: Terabin]
+- Fixed the "Slide" map attribute crashes. [Credits: iHero]
+- Fixed spirit over time spells. [Credits: Soul]
+- Fixed starting spells. [Credits: Noth]
+- Fixed the classes dropdown box in the spell editor. [Credits: Noth]
+- Fixed an error in the OnDeath procedure. [Credits: ValentineBr]
+- Corrected the time between attacks for NPCs. [Credits: ValentineBr]
+- Fixed an error caused by NPCs landing a critical hit. [Credits: ValentineBr]
+- Fixed item animations. [Credits: GuardianBR]
+- Fixed some bank crashes. [Credits: ValentineBr]
+- Fixed a lag spike caused when accepting trades. [Credits: Matthew]
+- Fixed a couple of player movement issues. [Credits: ValentineBr]
+- Fixed vitals not updating after a level up. [Credits: iRicardo]
+- Fixed the non-existant /info command. [Credits: iRicardo]
+- Fixed the shop editor not loading properly. [Credits: iRicardo]
+
+[Credits to Erwin for adding all the above fixes into the engine] 
+
+- Various code cleanups and optimisations.
+- NPCs and players will now automatically be targetted when attacked.
+- Fixed healing NPCs causing their overall health to increase.
+- You can now walk through players on safe maps.
+- Fixed party EXP sharing and party leaving. [Credits: Terabin]
+- Fixed being able to be invited to a party whilst you're inviting someone else.
+- Converted chat functions to letters (e.g. /b [global message], /e [emote], /w [whisper]).
+- Fixed emote messages.
+- Added a party chat system: usage /p message.
+- Removed the Read/WriteInteger functions. Integers are slow; use longs or bytes.
+- Replaced GetTickCount with the more reliable timeGetTime.
+- The /info command can now only be used if you are on a safe map.
+- Fixed the stats command erroring if the player didn't exist.
+- Added WASD and got rid of the arrow key movement.
+- Added replacement strings in NPC attacksays: <class> and <playername>.
+
+================================
+Eclipse Origins v1.5.0 -> v2.0.0
+================================
+
+- Map items now have despawn timers, spawn timers and name locks.
+- Dropped items now take 30 seconds to appear to people other than their original owners.
+- Npc drops are dropped in their killer's ownership. They take 30 seconds to appear to others.
+- Map items will now disappear after 90 seconds on the ground.
+- Fixed it so tileset scrolling in the map editor works.
+- Added handlers to all NPC editor textboxes. Should stop all editor errors.
+- Added a paperdoll ordering array.
+- PlayerWarp now simply sends a player's co-ordinates if they're not switching maps.
+
+================================
+Eclipse Origins v1.4.0 -> v1.5.0
+================================
+
+- Cached music & sound lists to improve loading speeds.
+- Music & sound lists are now cached when you visit your first game editor.
+- Music & sound lists are now pulled from the cache to allow for form unloading.
+- Added a personal health bar.
+- Changed action messages to be capped by remaining health.
+- Added 'SendPlayerXYToMap' for seamless warping.
+- Changed admin Shift + Rightclick warping to use the XY position modifier.
+- Fixed currency trading bug.
+- Currency trades now show the total worth of the entire stack.
+- Fixed the INVTOP offset in the IsTradeItem function (to match the existing bltTrade).
+- Currency items only disappear from your inventory when the entire stack is offered in trade.
+- Removed the control array for NPCs in the map properties.
+- Npc selection is now done through a list + combobox.
+- All editors are no longer loaded at startup and are purged from memory when closed.
+- Forgetting spells now uses the custom dialogue box to get confirmation.
+- Removed some CheckGrammar calls.
+- Added a party system.
+- Added party GUI.
+- Added dynamic health & spirit bars to party menu.
+- Max vitals are now affected by your boosted stats.
+- Added health bars to party members.
+- Vitals are now re-calculated and sent when equiping/unequiping equipment.
+
+================================
+Eclipse Origins v1.3.0 -> v1.4.0
+================================
+
+- Can now dump an image of your entire map through the admin panel.
+- Condensed the list population procedures in to a simple function.
+- Added a 'case else' to the max vital calculations so new classes use it automatically.
+- Fixed starting spells & items.
+- Added proper string clearing to all clearing routines.
+- Resource_Changed array size set properly.
+- Removed access restriction messages.
+- Added error message for people who don't extract Origins properly.
+- Fixed npcs not showing up in map editor.
+- Finished client-side error handler.
+- Fixed NPC drops.
+- Spells can now be forgetten without an erroneous cooldown message.
+- Spells can now be moved without an erroneous cooldown message.
+- Modified item editor to work on netbook resolutions. (600px height)
+- Modified spell editor to work on netbook resolutions. (600px height)
+- Fixed list population clearing.
+- Added dynamic health bars and cooldown bars.
+- Added custom yes & no/ okay dialogue box.
+- Trade requests now use the custom dialogue box.
+- Changed GAME_NAME to loaded from config.
+- Fixed memory leak, sporadic FPS and FPS degradation by removing custom fonts.
+
+================================
+Eclipse Origins v1.3.0 -> v1.3.1
+================================
+
+- Fixed FPS problems. Personally went from ~180fps average to ~700fps average.
+
+================================
+Eclipse Origins v1.2.0 -> v1.3.0
+================================
+
+- Standardised the data types. Cut out most, if not all, 16-bit processing.
+- Standardised data type packet sending.
+- Max items, npcs, maps etc. can all now handle anywhere up to 2million.
+- Resources now show as exhausted during map editing to make it easier to map.
+- Removed npc factions - had no use after removing npc vs. npc combat.
+- Added server-side loop time display & lock to help debug problems.
+- Added high indexing on player loops. Fixes y-based rendering fps drop.
+- Added a catch-all cooperative level change fix. No more errors when you lock your PC.
+- Map tilesets are now dynamic.
+- Fixed tileset horizontal scrolling in the map editor.
+- Added currency amount checks to all bank and trade interactions - no more duping.
+- Limited account/character names to 12 characters.
+- Changed the character filter to allow for extended ASCII.
+- Fixed shops.
+- Map editor now closes properly when warping.
+- Disabled door and slide attributes till I actually program them in.
+- Friendly NPCs now talk.
+- Fixed the distinction between player's stats and their RAW stats.
+- Fixed the map report.
+- Added centralised button animation procedures for both menu and ingame.
+- Added animated buttons to menu.
+- Added animated buttons to ingame GUI.
+- Added centralised sound packets and procedures.
+- Added sounds to animations.
+- Added sounds to items.
+- Added sounds to npcs.
+- Added sounds to resources.
+- Added sounds to spells.
+- Added sounds to animated buttons.
+- Centralised the music/sound list population - now carried out at startup.
+- Added file extension check to sound engine.
+- Fixed new character sprite selection problems.
+- Added high indexing on npc loops. Fixes y-based rendering fps drop.
+- Added high indexing on action message loops
+- Fixed class starting items.
+- Added class starting spells.
+
+================================
+Eclipse Origins v1.1.0 -> v1.2.0
+================================
+
+- Fixed casting bar problems.
+- Fixed problem with shop slots not being recognised.
+- News now loads from .txt file.
+- Removed credits system - replaced with same system as news.
+- Added line breaks through HTML break markup in news & credits.
+- Condensed directory checks.
+- Added conditional error handling. Enable by switching 'Debug = 0' to 'Debug = 1' in config.
+- Blood cache cleared on map change.
+- Paperdoll update sent on map change.
+- New character class combo click event fixed.
+- Currency is now tradable.
+- Item sprites now render correctly in item editor.
+- GDI text rendering fixed.
+- Changed character sprite layout to RMXP standard.
+- Fixed paperdoll issues and switched format to match character sprites.
+- Created & added new GUI.
+- Added face sprites.
+- Re-organised GUI components.
+- Created a new character menu.
+- Removed Npc vs. Npc combat.
+- Made blood dynamic.
+- Added access tags to players.
+- Npc names are now rendered.
+- Fixed it so player sprites no longer flash up as the full sheet for a loop when first loaded.
+- Condensed the potion item types into a single 'Consume'.
+- 'Consume' item type can now give health, mana, experience and cast a spell on use at the same time.
+- Added descriptions to items & spells which can be set in the editor.
+- Re-designed item tooltip.
+- Capped level point count.
+- Capped stat point counts.
+- NPCs are blocked by directional blocks.
+- Character starting item count is now dynamic.
+- Swapped out socket handlers.
+- Added class, access and level requirement checks to all items types.
+- Replaced file listing procedure for map music.
+- DoTs and HoTs are now cleared on death (lol).
+- Spells are now drag and drop.
+- Spell cooldown status now rendered in hotbar.
+- Added target type checks on all target purges.
+- Replaced loading message system.
+- Replaced login timeout system.
+- Swapped around start-up order.
+- Hotbar changed to function keys.
+- Admin panel switched to tilde.
+
+================================
+Eclipse Origins v1.0.3 -> v1.1.0
+================================
+
+- Fixed problem with class sprite selection.
+- Fixed map editor problem with tile selection. (Thanks to Derrick)
+- Removed isIp procedure. Caused problems when using domains.
+- Fixed problem with ghost items being given to the player.
+- Added new item sprites & spell sprites.
+- Added directional blocking system using bitwise operators.
+- Added graphical arrows which you can click in the map editor to set directional block.
+- Changed Map UDT. All the directional blocking data is stored in a single byte.
+- Added visual bank.
+- Added bank drag & drop system.
+- Added bank slot changing system.
+- Added right-click warping for developers whilst pressing shift.
+- Added heal tile. When stepped on it heals you.
+- Added trap tile. When stepped on it damages you.
+- Added slide tile. When stepped on it carries you in a direction to the next tile.
+- Created some new packet subs to replace packet sending code which was repeated.
+- Added a new procedure. "KillPlayer()" will now take EXP from a player and kill them.
+- Clicking 'trade' and then clicking on a player will invite them to trade.
+- If you try and trade a player who has tried to trade you as well, trade will be opened.
+- Added trade item offering, stored server-side in the TempPlayer.
+- Added graphical GUI for the trade offer so you can see your own and the other player's offer.
+- Map music is now stored as a string.
+- Tried to fix pretty much all bugs reported so far.
+
+================================
+Eclipse Origins v1.0.2 -> v1.0.3
+================================
+
+- Fixed problem which caused 'aero' theme on Vista & 7 to switch to basic.
+- Not having .bmp files will no longer crash the game.
+- Added Paperdoll.
+- Re-wrote the map UDT to have split X & Y values and multiple tilesets per map.
+- Having split X & Y values unlocks the ability for me to have dynamic tilesets.
+- Added multiple tile selection.
+- Stopped the map editor scrollbar max values from being set to the current map size.
+- Fixed it so the map editor scrollbar max values are set to MAX_BYTE.
+- Removed the timed unloading of tilesets and the load checks in blting subs.
+- Changed it so tilesets are loaded/unloaded accordingly when you change map.
+- Fixed a bug with healing spells.
+- Fixed ordering issues with stats.
+- Added music & sound engine thanks to Harold.
+- Fixed scrollbars to update properly when dragged around (In the map & anim editors)
+- Fixed it so resources only respawn when they've been harvested.
+- Added options menu for players to turn on/off music & sound.
+- Added class starter equipment.
+- Added main menu music.
+- Map music now plays.
+
+================================
+Eclipse Origins v1.0.1 -> v1.0.2
+================================
+
+- IP and Port now read from .ini
+- Animations now die properly when an NPC is no longer alive.
+- Fixed small RTE when equiping items which raise your stats above 255.
+- Added new spell editor.
+- Restructed spell UDT.
+- Added a scrolling & fading credits screen, taking credits from external file.
+- Added Spell cooldowns + cast times.
+- Added Spell icons.
+- Added visual spell menu in the main game GUI.
+- Reprogrammed spell casting from scratch.
+- Added grey-scale spell icons for visual cooldown notification.
+- Fixed some problems with movement restrictor when casting a spell.
+- Added calculation for AOE courtesy of Rodriguez & Fabio.
+- Added a box to allow users to drop currency items.
+- Added AOE capabilities to damage + heal spell types.
+- Re-did the GUI to rely more heavily on GDI and cut down on memory usage.
+- Added code to force the item description box onscreen.
+- Re-wrote large portion of spell system to use a lot less code.
+- Added access-specific and pk-specific name colours in chat.
+- Re-wrote the map system to have enumerated layers.
+- Re-wrote the shop system.
+- Shops have visual inventory + item descriptions.
+- Shops will buy items for a % of their worth.
+- Various small bug fixes + cleanups.
+
+==============================
+Eclipse Origins v1.0.0 -> v1.0.1
+==============================
+
+- Fixed problem with Item Editor damage scrollbar.
+- Added stat requirements to items.
+- Fixed problem with the 'None' item reward for resources.
+- Added blood decals.
+- Changed a few data types to be more logical.
+- Changed a few editor events.
+- Multiple level ups now have proper exp rollover and messages.
+- Proper font support.
+- Proper text centralising.
+- Empty attack say no longer appears.
+- If no damage is done it no longer shows '-0' and instead shows a block message.
+- Fixed small memory leak in DD7.
+- Fixed the colour in the inventory currency.
+- Added animation editor.
+- Added animation instance with locking capabilities.
+- Fixed NPC spawn attribute problem.
+- Added level up button to admin panel.
+- Fixed dodgy line-up in character sprites stolen from 2.7.
+- Added dual-layer animation.
+- Added animation timing + automated client-side animation death.
+- Added time-based movement to compensate for older CPUs.
+- Added animation capabilities to NPCs.
+- Added animation capabilities to items.
+- Added animation capabilities to resources.
+- Added class sprite pool
+
+====================
+Eclipse Origins v1.0.0
+====================
+
+- Created Eclipse Origins
