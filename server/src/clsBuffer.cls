@@ -66,6 +66,30 @@ Dim nLength As Long
     WriteHead = WriteHead + nLength
 End Sub
 
+Public Sub WriteCurrency(ByVal nCurrency As Currency)
+
+    If WriteHead + 7 > BufferSize Then Allocate 8
+    
+    CopyMemory Buffer(WriteHead), nCurrency, 8
+    WriteHead = WriteHead + 8
+End Sub
+
+Public Sub WriteDouble(ByVal nDouble As Double)
+
+    If WriteHead + 7 > BufferSize Then Allocate 8
+    
+    CopyMemory Buffer(WriteHead), nDouble, 8
+    WriteHead = WriteHead + 8
+End Sub
+
+Public Sub WriteSingle(ByVal nSingle As Single)
+
+    If WriteHead + 3 > BufferSize Then Allocate 4
+    
+    CopyMemory Buffer(WriteHead), nSingle, 4
+    WriteHead = WriteHead + 4
+End Sub
+
 Public Sub WriteLong(ByVal nLong As Long)
 
     If WriteHead + 3 > BufferSize Then Allocate 4
@@ -112,6 +136,34 @@ Dim Data() As Byte
     
     ReadBytes = Data
 End Function
+
+Public Function ReadCurrency(Optional MoveReadHead As Boolean = True) As Currency
+
+    If ReadHead + 7 > BufferSize Then Exit Function
+    
+    CopyMemory ReadCurrency, Buffer(ReadHead), 8
+    If MoveReadHead Then ReadHead = ReadHead + 8
+
+End Function
+
+Public Function ReadSingle(Optional MoveReadHead As Boolean = True) As Single
+
+    If ReadHead + 3 > BufferSize Then Exit Function
+    
+    CopyMemory ReadSingle, Buffer(ReadHead), 4
+    If MoveReadHead Then ReadHead = ReadHead + 4
+
+End Function
+
+Public Function ReadDouble(Optional MoveReadHead As Boolean = True) As Double
+
+    If ReadHead + 7 > BufferSize Then Exit Function
+    
+    CopyMemory ReadDouble, Buffer(ReadHead), 8
+    If MoveReadHead Then ReadHead = ReadHead + 8
+
+End Function
+
 
 Public Function ReadLong(Optional MoveReadHead As Boolean = True) As Long
 
