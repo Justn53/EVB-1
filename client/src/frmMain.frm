@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
+Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "mswinsck.ocx"
 Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form frmMain 
    BackColor       =   &H00E0E0E0&
@@ -1197,7 +1197,6 @@ Begin VB.Form frmMain
       _Version        =   393217
       BackColor       =   790032
       BorderStyle     =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
@@ -1748,6 +1747,83 @@ Begin VB.Form frmMain
          Width           =   2640
       End
    End
+   Begin VB.PictureBox picShop 
+      Appearance      =   0  'Flat
+      AutoSize        =   -1  'True
+      BackColor       =   &H00E0E0E0&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   4215
+      Left            =   1680
+      ScaleHeight     =   231.557
+      ScaleMode       =   0  'User
+      ScaleWidth      =   275
+      TabIndex        =   53
+      Top             =   960
+      Visible         =   0   'False
+      Width           =   4125
+      Begin VB.PictureBox picShopItems 
+         Appearance      =   0  'Flat
+         AutoRedraw      =   -1  'True
+         BackColor       =   &H00000000&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   3094
+         Left            =   615
+         ScaleHeight     =   206
+         ScaleMode       =   3  'Pixel
+         ScaleWidth      =   193
+         TabIndex        =   54
+         Top             =   630
+         Width           =   2895
+      End
+      Begin VB.Image imgLeaveShop 
+         Height          =   435
+         Left            =   1560
+         Top             =   3786
+         Width           =   1035
+      End
+   End
+   Begin VB.PictureBox picScreen 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00181C21&
+      BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000008&
+      Height          =   5760
+      Left            =   150
+      ScaleHeight     =   384
+      ScaleMode       =   3  'Pixel
+      ScaleWidth      =   480
+      TabIndex        =   0
+      Top             =   150
+      Visible         =   0   'False
+      Width           =   7200
+      Begin MSWinsockLib.Winsock Socket 
+         Left            =   0
+         Top             =   0
+         _ExtentX        =   741
+         _ExtentY        =   741
+         _Version        =   393216
+      End
+   End
    Begin VB.PictureBox picTrade 
       Appearance      =   0  'Flat
       AutoRedraw      =   -1  'True
@@ -1897,83 +1973,6 @@ Begin VB.Form frmMain
       Top             =   150
       Visible         =   0   'False
       Width           =   7200
-   End
-   Begin VB.PictureBox picShop 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H00E0E0E0&
-      BorderStyle     =   0  'None
-      ForeColor       =   &H80000008&
-      Height          =   5115
-      Left            =   1680
-      ScaleHeight     =   341
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   275
-      TabIndex        =   53
-      Top             =   480
-      Visible         =   0   'False
-      Width           =   4125
-      Begin VB.PictureBox picShopItems 
-         Appearance      =   0  'Flat
-         AutoRedraw      =   -1  'True
-         BackColor       =   &H00000000&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000008&
-         Height          =   3165
-         Left            =   615
-         ScaleHeight     =   211
-         ScaleMode       =   3  'Pixel
-         ScaleWidth      =   193
-         TabIndex        =   54
-         Top             =   630
-         Width           =   2895
-      End
-      Begin VB.Image imgLeaveShop 
-         Height          =   435
-         Left            =   2715
-         Top             =   4350
-         Width           =   1035
-      End
-   End
-   Begin VB.PictureBox picScreen 
-      Appearance      =   0  'Flat
-      BackColor       =   &H00181C21&
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H80000008&
-      Height          =   5760
-      Left            =   150
-      ScaleHeight     =   384
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   480
-      TabIndex        =   0
-      Top             =   150
-      Visible         =   0   'False
-      Width           =   7200
-      Begin MSWinsockLib.Winsock Socket 
-         Left            =   0
-         Top             =   0
-         _ExtentX        =   741
-         _ExtentY        =   741
-         _Version        =   393216
-      End
    End
    Begin VB.Image imgButton 
       Height          =   435
@@ -2281,14 +2280,14 @@ errorhandler:
     Exit Sub
 End Sub
 
-Private Sub imgButton_Click(index As Integer)
-Dim Buffer As clsBuffer
+Private Sub imgButton_Click(Index As Integer)
+Dim buffer As clsBuffer
 Dim i As Long
     
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
-    Select Case index
+    Select Case Index
         Case 1
             If Not picInventory.Visible Then
                 ' show the window
@@ -2303,10 +2302,10 @@ Dim i As Long
         Case 2
             If Not picSpells.Visible Then
                 ' send packet
-                Set Buffer = New clsBuffer
-                Buffer.WriteLong CSpells
-                SendData Buffer.ToArray()
-                Set Buffer = Nothing
+                Set buffer = New clsBuffer
+                buffer.WriteLong CSpells
+                SendData buffer.ToArray()
+                Set buffer = Nothing
                 ' show the window
                 picSpells.Visible = True
                 picInventory.Visible = False
@@ -2379,7 +2378,7 @@ Dim i As Long
     End Select
     
     ' Play the button-click sound
-    If index > 0 Then PlaySound "Decision1.wav"
+    If Index > 0 Then PlaySound "Decision1.wav"
     
     ' Error handler
     Exit Sub
@@ -2389,22 +2388,22 @@ errorhandler:
     Exit Sub
 End Sub
 
-Private Sub imgButton_MouseMove(index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgButton_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
     ' reset other buttons
-    resetButtons_Main index
+    resetButtons_Main Index
     
     ' change the button we're hovering on
-    If Not MainButton(index).state = 2 Then ' make sure we're not clicking
-        changeButtonState_Main index, 1 ' hover
+    If Not MainButton(Index).state = 2 Then ' make sure we're not clicking
+        changeButtonState_Main Index, 1 ' hover
     End If
     
     ' play sound
-    If Not LastButtonSound_Main = index Then
+    If Not LastButtonSound_Main = Index Then
         PlaySound "Cursor1.wav"
-        LastButtonSound_Main = index
+        LastButtonSound_Main = Index
     End If
     
     ' Error handler
@@ -2415,7 +2414,7 @@ errorhandler:
     Exit Sub
 End Sub
 
-Private Sub imgButton_MouseUp(index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgButton_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
         
@@ -2430,15 +2429,15 @@ errorhandler:
     Exit Sub
 End Sub
 
-Private Sub imgButton_MouseDown(index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgButton_MouseDown(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
     ' reset other buttons
-    resetButtons_Main index
+    resetButtons_Main Index
     
     ' change the button we're hovering on
-    changeButtonState_Main index, 2 ' clicked
+    changeButtonState_Main Index, 2 ' clicked
     
     ' Error handler
     Exit Sub
@@ -2448,8 +2447,8 @@ errorhandler:
     Exit Sub
 End Sub
 
-Private Sub lblConvResp_Click(index As Integer)
-    Call ConvResp(index)
+Private Sub lblConvResp_Click(Index As Integer)
+    Call ConvResp(Index)
 End Sub
 
 Private Sub lblCurrencyCancel_Click()
@@ -2486,15 +2485,15 @@ errorhandler:
 End Sub
 
 Private Sub imgLeaveShop_Click()
-Dim Buffer As clsBuffer
+Dim buffer As clsBuffer
     
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
-    Set Buffer = New clsBuffer
-    Buffer.WriteLong CCloseShop
-    SendData Buffer.ToArray()
-    Set Buffer = Nothing
+    Set buffer = New clsBuffer
+    buffer.WriteLong CCloseShop
+    SendData buffer.ToArray()
+    Set buffer = Nothing
     
     picCover.Visible = False
     picShop.Visible = False
@@ -2542,12 +2541,12 @@ errorhandler:
     Exit Sub
 End Sub
 
-Private Sub lblDialogue_Button_Click(index As Integer)
+Private Sub lblDialogue_Button_Click(Index As Integer)
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
     ' call the handler
-    dialogueHandler index
+    dialogueHandler Index
     
     picDialogue.Visible = False
     dialogueIndex = 0
@@ -2640,12 +2639,12 @@ errorhandler:
     Exit Sub
 End Sub
 
-Private Sub lblTrainStat_Click(index As Integer)
+Private Sub lblTrainStat_Click(Index As Integer)
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
     If GetPlayerPOINTS(MyIndex) = 0 Then Exit Sub
-    SendTrainStat index
+    SendTrainStat Index
     
     ' Error handler
     Exit Sub
@@ -2929,12 +2928,34 @@ errorhandler:
     Exit Sub
 End Sub
 
+Private Sub picShopItems_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Dim shopItem As Long
+
+    ' If debug mode, handle error then exit out
+    If Options.Debug = 1 Then On Error GoTo errorhandler
+
+    shopItem = IsShopItem(x, y)
+    
+    If shopItem > 0 Then
+        With Shop(InShop).TradeItem(shopItem)
+            AddText "You can buy this item for " & .CostValue & " " & Trim$(Item(.CostItem).name) & ".", White
+        End With
+    End If
+    
+    ' Error handler
+    Exit Sub
+errorhandler:
+    HandleError "picShopItems_MouseDown", "frmMain", Err.Number, Err.Description, Err.Source, Err.HelpContext
+    Err.Clear
+    Exit Sub
+End Sub
+
 Private Sub picShopItems_DblClick()
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
-    If ShopItem > 0 Then
-        BuyItem ShopItem
+    If shopItem > 0 Then
+        BuyItem shopItem
     End If
     
     ' Error handler
@@ -2951,13 +2972,13 @@ Dim x2 As Long, y2 As Long
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
-    ShopItem = IsShopItem(x, y)
+    shopItem = IsShopItem(x, y)
 
-    If ShopItem > 0 Then
+    If shopItem > 0 Then
         x2 = x + picShop.Left + picShopItems.Left + 1
         y2 = y + picShop.top + picShopItems.top + 1
-        UpdateDescWindow Shop(InShop).TradeItem(ShopItem).Item, x2, y2
-        LastItemDesc = Shop(InShop).TradeItem(ShopItem).Item
+        UpdateDescWindow Shop(InShop).TradeItem(shopItem).Item, x2, y2
+        LastItemDesc = Shop(InShop).TradeItem(shopItem).Item
         Exit Sub
     End If
     

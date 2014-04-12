@@ -1,4 +1,4 @@
-frmMain = 0, 0, 0, 0, C, 52, 52, 1389, 742, C
+frmMain = 78, 78, 1219, 516, Z, 52, 52, 1389, 742, C
 modText = 0, 0, 0, 0, C
 modTypes = 0, 0, 0, 0, C
 frmMenu = 0, 0, 0, 0, C, 104, 104, 1441, 794, C
@@ -18,7 +18,7 @@ modDirectDraw7 = 0, 0, 0, 0, C
 modEnumerations = 0, 0, 0, 0, C
 modHandleData = 0, 0, 0, 0, C
 modInput = 0, 0, 0, 0, C
-clsBuffer = 26, 26, 1363, 716, Z
+clsBuffer = 26, 26, 1363, 716, 
 frmEditor_Map = 0, 0, 0, 0, C, 260, 260, 1597, 950, C
 frmEditor_Resource = 0, 0, 0, 0, C, 286, 286, 1623, 976, C
 frmEditor_Animation = 0, 0, 0, 0, C, 312, 312, 1649, 1002, C
