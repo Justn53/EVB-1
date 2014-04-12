@@ -1,4 +1,10 @@
 ==========================
+EclipseVB v2.5.2 -> v2.5.2.1
+==========================
+
+- Added functions for reading/writing currencies, singles, and doubles to the buffer.
+
+==========================
 EclipseVB v2.5.1 -> v2.5.2
 ==========================
 
