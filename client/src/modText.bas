@@ -56,25 +56,30 @@ Dim TextX As Long
 Dim TextY As Long
 Dim Color As Long
 Dim name As String
-
+Dim Title As String
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
-
+    
     ' Check access level
     Select Case GetPlayerAccess(index)
         Case 0
             Color = RGB(255, 96, 0)
+            Title = ""
         Case 1
             Color = QBColor(DarkGrey)
+            Title = "(MOD) "
         Case 2
             Color = QBColor(Cyan)
+            Title = "(MAP) "
         Case 3
             Color = QBColor(BrightGreen)
+            Title = "(DEV) "
         Case 4
             Color = QBColor(Yellow)
+            Title = "(GOD) "
     End Select
 
-    name = Trim$(Player(index).name)
+    name = Title + Trim$(Player(index).name)
     ' calc pos
     TextX = ConvertMapX(GetPlayerX(index) * PIC_X) + Player(index).XOffset + (PIC_X \ 2) - getWidth(TexthDC, (Trim$(name)))
     If GetPlayerSprite(index) < 1 Or GetPlayerSprite(index) > NumCharacters Then
