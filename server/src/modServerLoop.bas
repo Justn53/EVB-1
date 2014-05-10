@@ -112,16 +112,22 @@ Dim MapNum As Long, LastUpdateMapLogic(1 To MAX_MAPS) As Long
         End If
         
         For MapNum = 1 To MAX_MAPS
-            ' Checks to spawn map items every 5 minutes - Can be tweaked
-            If Tick > LastUpdateMapSpawnItems(MapNum) Then
-                UpdateMapSpawnItems MapNum
-                LastUpdateMapSpawnItems(MapNum) = timeGetTime + 300000
-            End If
+        
+            ' Make sure there are actually players on the map
+            If (PlayersOnMap(MapNum) > 0) Then
             
-            ' update map logic
-            If Tick > LastUpdateMapLogic(MapNum) Then
-                UpdateMapLogic MapNum
-                LastUpdateMapLogic(MapNum) = timeGetTime + 500
+                ' Checks to spawn map items every 5 minutes - Can be tweaked
+                If Tick > LastUpdateMapSpawnItems(MapNum) Then
+                    UpdateMapSpawnItems MapNum
+                    LastUpdateMapSpawnItems(MapNum) = timeGetTime + 300000
+                End If
+                
+                ' update map logic
+                If Tick > LastUpdateMapLogic(MapNum) Then
+                    UpdateMapLogic MapNum
+                    LastUpdateMapLogic(MapNum) = timeGetTime + 500
+                End If
+                
             End If
         Next
 

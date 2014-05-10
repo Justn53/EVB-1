@@ -253,7 +253,7 @@ Public Sub PlayerWarp(ByVal index As Long, ByVal MapNum As Long, ByVal x As Long
 
     ' Save old map to send erase player data to
     OldMap = GetPlayerMap(index)
-
+    
     If OldMap <> MapNum Then
         Call SendLeaveMap(index, OldMap)
     End If
@@ -1182,7 +1182,9 @@ End Function
 Sub SetPlayerMap(ByVal index As Long, ByVal MapNum As Long)
 
     If MapNum > 0 And MapNum <= MAX_MAPS Then
+        
         Player(index).Map = MapNum
+
     End If
 
 End Sub
