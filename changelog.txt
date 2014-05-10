@@ -3,6 +3,8 @@ EclipseVB v2.5.2 -> v2.5.3
 ==========================
 
 - Rank Titles
+-Stopped processing maps that nobody is on. Used cached amount of players for 
+	GetTotalMapPlayers instead of looping through ever player in the game.
 
 ==========================
 EclipseVB v2.5.2 -> v2.5.2.1
