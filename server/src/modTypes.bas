@@ -232,6 +232,7 @@ Private Type MapRec
     
     Tile() As TileRec
     Npc(1 To MAX_MAP_NPCS) As Long
+    MapPlayers As Long
 End Type
 
 Private Type ClassRec

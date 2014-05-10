@@ -552,19 +552,7 @@ Public Sub NpcDir(ByVal MapNum As Long, ByVal mapNpcNum As Long, ByVal Dir As Lo
 End Sub
 
 Function GetTotalMapPlayers(ByVal MapNum As Long) As Long
-    Dim i As Long
-    Dim n As Long
-    n = 0
-
-    For i = 1 To Player_HighIndex
-
-        If IsPlaying(i) And GetPlayerMap(i) = MapNum Then
-            n = n + 1
-        End If
-
-    Next
-
-    GetTotalMapPlayers = n
+    GetTotalMapPlayers = PlayersOnMap(MapNum)
 End Function
 
 Sub ClearTempTiles()
