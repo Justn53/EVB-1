@@ -1,0 +1,5 @@
+[History]
+1=#P0#=mb	#P1#=BltBank	#P2#=EVB/modDirectDraw7/BltBank	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20140614230337	#P7#=0	#P8#=56	.
+2=#P0#=mb	#P1#=BltAnimatedInvItems	#P2#=EVB/modDirectDraw7/BltAnimatedInvItems	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20140614230315	#P7#=0	#P8#=57	.
+3=#P0#=mb	#P1#=GetBankItemValue	#P2#=EVB/modGameLogic/GetBankItemValue	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20140614230231	#P7#=0	#P8#=4	.
+4=#P0#=mb	#P1#=lblCurrencyOk_Click	#P2#=EVB/frmMain/lblCurrencyOk_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20140614230015	#P7#=0	#P8#=5	.

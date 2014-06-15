@@ -979,13 +979,13 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub BltBlood(ByVal index As Long)
+Public Sub BltBlood(ByVal Index As Long)
 Dim rec As DXVBLib.RECT
     
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
-    With Blood(index)
+    With Blood(Index)
         ' check if we should be seeing it
         If .Timer + 20000 < timeGetTime Then Exit Sub
         
@@ -1005,7 +1005,7 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub BltAnimation(ByVal index As Long, ByVal Layer As Long)
+Public Sub BltAnimation(ByVal Index As Long, ByVal Layer As Long)
 Dim Sprite As Long
 Dim sRECT As DXVBLib.RECT
 Dim dRECT As DXVBLib.RECT
@@ -1019,15 +1019,15 @@ Dim lockindex As Long
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
-    If AnimInstance(index).Animation = 0 Then
-        ClearAnimInstance index
+    If AnimInstance(Index).Animation = 0 Then
+        ClearAnimInstance Index
         Exit Sub
     End If
     
-    Sprite = Animation(AnimInstance(index).Animation).Sprite(Layer)
+    Sprite = Animation(AnimInstance(Index).Animation).Sprite(Layer)
     If Sprite < 1 Or Sprite > NumAnimations Then Exit Sub
     
-    FrameCount = Animation(AnimInstance(index).Animation).Frames(Layer)
+    FrameCount = Animation(AnimInstance(Index).Animation).Frames(Layer)
     AnimationTimer(Sprite) = timeGetTime + SurfaceTimerMax
     
     If DDS_Animation(Sprite) Is Nothing Then
@@ -1040,15 +1040,15 @@ Dim lockindex As Long
     
     sRECT.top = 0
     sRECT.Bottom = height
-    sRECT.Left = (AnimInstance(index).FrameIndex(Layer) - 1) * width
+    sRECT.Left = (AnimInstance(Index).FrameIndex(Layer) - 1) * width
     sRECT.Right = sRECT.Left + width
     
     ' change x or y if locked
-    If AnimInstance(index).LockType > TARGET_TYPE_NONE Then ' if <> none
+    If AnimInstance(Index).LockType > TARGET_TYPE_NONE Then ' if <> none
         ' is a player
-        If AnimInstance(index).LockType = TARGET_TYPE_PLAYER Then
+        If AnimInstance(Index).LockType = TARGET_TYPE_PLAYER Then
             ' quick save the index
-            lockindex = AnimInstance(index).lockindex
+            lockindex = AnimInstance(Index).lockindex
             ' check if is ingame
             If IsPlaying(lockindex) Then
                 ' check if on same map
@@ -1058,9 +1058,9 @@ Dim lockindex As Long
                     Y = (GetPlayerY(lockindex) * PIC_Y) + 16 - (height / 2) + Player(lockindex).YOffset
                 End If
             End If
-        ElseIf AnimInstance(index).LockType = TARGET_TYPE_NPC Then
+        ElseIf AnimInstance(Index).LockType = TARGET_TYPE_NPC Then
             ' quick save the index
-            lockindex = AnimInstance(index).lockindex
+            lockindex = AnimInstance(Index).lockindex
             ' check if NPC exists
             If MapNpc(lockindex).num > 0 Then
                 ' check if alive
@@ -1070,19 +1070,19 @@ Dim lockindex As Long
                     Y = (MapNpc(lockindex).Y * PIC_Y) + 16 - (height / 2) + MapNpc(lockindex).YOffset
                 Else
                     ' npc not alive anymore, kill the animation
-                    ClearAnimInstance index
+                    ClearAnimInstance Index
                     Exit Sub
                 End If
             Else
                 ' npc not alive anymore, kill the animation
-                ClearAnimInstance index
+                ClearAnimInstance Index
                 Exit Sub
             End If
         End If
     Else
         ' no lock, default x + y
-        X = (AnimInstance(index).X * 32) + 16 - (width / 2)
-        Y = (AnimInstance(index).Y * 32) + 16 - (height / 2)
+        X = (AnimInstance(Index).X * 32) + 16 - (width / 2)
+        Y = (AnimInstance(Index).Y * 32) + 16 - (height / 2)
     End If
     
     X = ConvertMapX(X)
@@ -1457,7 +1457,7 @@ Dim tmpY As Long, tmpX As Long
 Dim sWidth As Long, sHeight As Long
 Dim sRECT As RECT
 Dim barWidth As Long
-Dim i As Long, npcNum As Long, partyIndex As Long
+Dim i As Long, NpcNum As Long, partyIndex As Long
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
@@ -1468,17 +1468,17 @@ Dim i As Long, npcNum As Long, partyIndex As Long
     
     ' render health bars
     For i = 1 To MAX_MAP_NPCS
-        npcNum = MapNpc(i).num
+        NpcNum = MapNpc(i).num
         ' exists?
-        If npcNum > 0 Then
+        If NpcNum > 0 Then
             ' alive?
-            If MapNpc(i).Vital(Vitals.HP) > 0 And MapNpc(i).Vital(Vitals.HP) < Npc(npcNum).HP Then
+            If MapNpc(i).Vital(Vitals.HP) > 0 And MapNpc(i).Vital(Vitals.HP) < Npc(NpcNum).HP Then
                 ' lock to npc
                 tmpX = MapNpc(i).X * PIC_X + MapNpc(i).XOffset + 16 - (sWidth / 2)
                 tmpY = MapNpc(i).Y * PIC_Y + MapNpc(i).YOffset + 35
                 
                 ' calculate the width to fill
-                barWidth = ((MapNpc(i).Vital(Vitals.HP) / sWidth) / (Npc(npcNum).HP / sWidth)) * sWidth
+                barWidth = ((MapNpc(i).Vital(Vitals.HP) / sWidth) / (Npc(NpcNum).HP / sWidth)) * sWidth
                 
                 ' draw bar background
                 With sRECT
@@ -1683,7 +1683,7 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub BltPlayer(ByVal index As Long)
+Public Sub BltPlayer(ByVal Index As Long)
 Dim Anim As Byte, i As Long, X As Long, Y As Long
 Dim Sprite As Long, spritetop As Long
 Dim rec As DXVBLib.RECT
@@ -1692,7 +1692,7 @@ Dim attackspeed As Long
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
-    Sprite = GetPlayerSprite(index)
+    Sprite = GetPlayerSprite(Index)
 
     If Sprite < 1 Or Sprite > NumCharacters Then Exit Sub
     
@@ -1703,40 +1703,40 @@ Dim attackspeed As Long
     End If
 
     ' speed from weapon
-    If GetPlayerEquipment(index, Weapon) > 0 Then
-        attackspeed = Item(GetPlayerEquipment(index, Weapon)).Speed
+    If GetPlayerEquipment(Index, Weapon) > 0 Then
+        attackspeed = Item(GetPlayerEquipment(Index, Weapon)).Speed
     Else
         attackspeed = 1000
     End If
 
     ' Reset frame
-    If Player(index).Step = 3 Then
+    If Player(Index).Step = 3 Then
         Anim = 0
-    ElseIf Player(index).Step = 1 Then
+    ElseIf Player(Index).Step = 1 Then
         Anim = 2
     End If
     
     ' Check for attacking animation
-    If Player(index).AttackTimer + (attackspeed / 2) > timeGetTime Then
-        If Player(index).Attacking = 1 Then
+    If Player(Index).AttackTimer + (attackspeed / 2) > timeGetTime Then
+        If Player(Index).Attacking = 1 Then
             Anim = 3
         End If
     Else
         ' If not attacking, walk normally
-        Select Case GetPlayerDir(index)
+        Select Case GetPlayerDir(Index)
             Case DIR_UP
-                If (Player(index).YOffset > 8) Then Anim = Player(index).Step
+                If (Player(Index).YOffset > 8) Then Anim = Player(Index).Step
             Case DIR_DOWN
-                If (Player(index).YOffset < -8) Then Anim = Player(index).Step
+                If (Player(Index).YOffset < -8) Then Anim = Player(Index).Step
             Case DIR_LEFT
-                If (Player(index).XOffset > 8) Then Anim = Player(index).Step
+                If (Player(Index).XOffset > 8) Then Anim = Player(Index).Step
             Case DIR_RIGHT
-                If (Player(index).XOffset < -8) Then Anim = Player(index).Step
+                If (Player(Index).XOffset < -8) Then Anim = Player(Index).Step
         End Select
     End If
 
     ' Check to see if we want to stop making him attack
-    With Player(index)
+    With Player(Index)
         If .AttackTimer + attackspeed < timeGetTime Then
             .Attacking = 0
             .AttackTimer = 0
@@ -1744,7 +1744,7 @@ Dim attackspeed As Long
     End With
 
     ' Set the left
-    Select Case GetPlayerDir(index)
+    Select Case GetPlayerDir(Index)
         Case DIR_UP
             spritetop = 3
         Case DIR_RIGHT
@@ -1763,15 +1763,15 @@ Dim attackspeed As Long
     End With
 
     ' Calculate the X
-    X = GetPlayerX(index) * PIC_X + Player(index).XOffset - ((DDSD_Character(Sprite).lWidth / 4 - 32) / 2)
+    X = GetPlayerX(Index) * PIC_X + Player(Index).XOffset - ((DDSD_Character(Sprite).lWidth / 4 - 32) / 2)
 
     ' Is the player's height more than 32..?
     If (DDSD_Character(Sprite).lHeight) > 32 Then
         ' Create a 32 pixel offset for larger sprites
-        Y = GetPlayerY(index) * PIC_Y + Player(index).YOffset - ((DDSD_Character(Sprite).lHeight / 4) - 32)
+        Y = GetPlayerY(Index) * PIC_Y + Player(Index).YOffset - ((DDSD_Character(Sprite).lHeight / 4) - 32)
     Else
         ' Proceed as normal
-        Y = GetPlayerY(index) * PIC_Y + Player(index).YOffset
+        Y = GetPlayerY(Index) * PIC_Y + Player(Index).YOffset
     End If
 
     ' render the actual sprite
@@ -1779,9 +1779,9 @@ Dim attackspeed As Long
     
     ' check for paperdolling
     For i = 1 To UBound(PaperdollOrder)
-        If GetPlayerEquipment(index, PaperdollOrder(i)) > 0 Then
-            If Item(GetPlayerEquipment(index, PaperdollOrder(i))).Paperdoll > 0 Then
-                Call BltPaperdoll(X, Y, Item(GetPlayerEquipment(index, PaperdollOrder(i))).Paperdoll, Anim, spritetop)
+        If GetPlayerEquipment(Index, PaperdollOrder(i)) > 0 Then
+            If Item(GetPlayerEquipment(Index, PaperdollOrder(i))).Paperdoll > 0 Then
+                Call BltPaperdoll(X, Y, Item(GetPlayerEquipment(Index, PaperdollOrder(i))).Paperdoll, Anim, spritetop)
             End If
         End If
     Next
@@ -3724,11 +3724,11 @@ Dim Sprite As Long, colour As Long
                 Engine_BltToDC DDS_Item(Sprite), sRECT, dRECT, frmMain.picBank, False
 
                 ' If item is a stack - draw the amount you have
-                If GetBankItemValue(i) > 1 Then
+                If GetBankItemValue(0, i) > 1 Then
                     Y = dRECT.top + 22
                     X = dRECT.Left - 4
                 
-                    Amount = CStr(GetBankItemValue(i))
+                    Amount = CStr(GetBankItemValue(0, i))
                     ' Draw currency but with k, m, b etc. using a convertion function
                     If CLng(Amount) < 1000000 Then
                         colour = QBColor(White)

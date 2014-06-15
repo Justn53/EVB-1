@@ -1,7 +1,7 @@
 Type=Exe
-Reference=*\G{E1211242-8E94-11D1-8808-00C04FC2C602}#1.0#0#..\..\..\..\..\..\WINDOWS\SysWow64\dx7vb.dll#DirectX 7 for Visual Basic Type Library
-Reference=*\G{E1211242-8E94-11D1-8808-00C04FC2C603}#1.0#0#..\..\..\..\..\..\Program Files (x86)\Eclipse Origins Runtime Files\Runtimes\dx8vb.dll#DirectX 8 for Visual Basic Type Library
-Object={248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0; Mswinsck.ocx
+Reference=*\G{E1211242-8E94-11D1-8808-00C04FC2C602}#1.0#0#..\..\..\..\..\..\Windows\system32\dx7vb.dll#DirectX 7 for Visual Basic Type Library
+Reference=*\G{E1211242-8E94-11D1-8808-00C04FC2C603}#1.0#0#..\..\..\..\..\..\Windows\System32\dx8vb.dll#DirectX 8 for Visual Basic Type Library
+Object={248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0; MSWINSCN.OCX
 Object={3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0; Richtx32.ocx
 Form=src\frmMain.frm
 Module=modText; Src\modText.bas

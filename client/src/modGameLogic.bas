@@ -169,54 +169,54 @@ errorhandler:
     Exit Sub
 End Sub
 
-Sub ProcessMovement(ByVal index As Long)
+Sub ProcessMovement(ByVal Index As Long)
 Dim MovementSpeed As Long
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
 
     ' Check if player is walking, and if so process moving them over
-    Select Case Player(index).Moving
+    Select Case Player(Index).Moving
         Case MOVING_WALKING: MovementSpeed = ((ElapsedTime / 1000) * (RUN_SPEED * SIZE_X))
         Case MOVING_RUNNING: MovementSpeed = ((ElapsedTime / 1000) * (WALK_SPEED * SIZE_X))
         Case Else: Exit Sub
     End Select
     
-    If Player(index).Step = 0 Then Player(index).Step = 1
+    If Player(Index).Step = 0 Then Player(Index).Step = 1
     
-    Select Case GetPlayerDir(index)
+    Select Case GetPlayerDir(Index)
         Case DIR_UP
-            Player(index).YOffset = Player(index).YOffset - MovementSpeed
-            If Player(index).YOffset < 0 Then Player(index).YOffset = 0
+            Player(Index).YOffset = Player(Index).YOffset - MovementSpeed
+            If Player(Index).YOffset < 0 Then Player(Index).YOffset = 0
         Case DIR_DOWN
-            Player(index).YOffset = Player(index).YOffset + MovementSpeed
-            If Player(index).YOffset > 0 Then Player(index).YOffset = 0
+            Player(Index).YOffset = Player(Index).YOffset + MovementSpeed
+            If Player(Index).YOffset > 0 Then Player(Index).YOffset = 0
         Case DIR_LEFT
-            Player(index).XOffset = Player(index).XOffset - MovementSpeed
-            If Player(index).XOffset < 0 Then Player(index).XOffset = 0
+            Player(Index).XOffset = Player(Index).XOffset - MovementSpeed
+            If Player(Index).XOffset < 0 Then Player(Index).XOffset = 0
         Case DIR_RIGHT
-            Player(index).XOffset = Player(index).XOffset + MovementSpeed
-            If Player(index).XOffset > 0 Then Player(index).XOffset = 0
+            Player(Index).XOffset = Player(Index).XOffset + MovementSpeed
+            If Player(Index).XOffset > 0 Then Player(Index).XOffset = 0
     End Select
 
     ' Check if completed walking over to the next tile
-    If Player(index).Moving > 0 Then
-        If GetPlayerDir(index) = DIR_RIGHT Or GetPlayerDir(index) = DIR_DOWN Then
-            If (Player(index).XOffset >= 0) And (Player(index).YOffset >= 0) Then
-                Player(index).Moving = 0
-                If Player(index).Step = 1 Then
-                    Player(index).Step = 3
+    If Player(Index).Moving > 0 Then
+        If GetPlayerDir(Index) = DIR_RIGHT Or GetPlayerDir(Index) = DIR_DOWN Then
+            If (Player(Index).XOffset >= 0) And (Player(Index).YOffset >= 0) Then
+                Player(Index).Moving = 0
+                If Player(Index).Step = 1 Then
+                    Player(Index).Step = 3
                 Else
-                    Player(index).Step = 1
+                    Player(Index).Step = 1
                 End If
             End If
         Else
-            If (Player(index).XOffset <= 0) And (Player(index).YOffset <= 0) Then
-                Player(index).Moving = 0
-                If Player(index).Step = 1 Then
-                    Player(index).Step = 3
+            If (Player(Index).XOffset <= 0) And (Player(Index).YOffset <= 0) Then
+                Player(Index).Moving = 0
+                If Player(Index).Step = 1 Then
+                    Player(Index).Step = 3
                 Else
-                    Player(index).Step = 1
+                    Player(Index).Step = 1
                 End If
             End If
         End If
@@ -290,22 +290,22 @@ errorhandler:
 End Sub
 
 Sub CheckMapGetItem()
-Dim Buffer As New clsBuffer
+Dim buffer As New clsBuffer
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
-    Set Buffer = New clsBuffer
+    Set buffer = New clsBuffer
 
     If timeGetTime > Player(MyIndex).MapGetTimer + 250 Then
         If Trim$(MyText) = vbNullString Then
             Player(MyIndex).MapGetTimer = timeGetTime
-            Buffer.WriteLong CMapGetItem
-            SendData Buffer.ToArray()
+            buffer.WriteLong CMapGetItem
+            SendData buffer.ToArray()
         End If
     End If
 
-    Set Buffer = Nothing
+    Set buffer = Nothing
     
     ' Error handler
     Exit Sub
@@ -316,7 +316,7 @@ errorhandler:
 End Sub
 
 Public Sub CheckAttack()
-Dim Buffer As clsBuffer
+Dim buffer As clsBuffer
 Dim attackspeed As Long
 
     ' If debug mode, handle error then exit out
@@ -342,10 +342,10 @@ Dim attackspeed As Long
                     .AttackTimer = timeGetTime
                 End With
 
-                Set Buffer = New clsBuffer
-                Buffer.WriteLong CAttack
-                SendData Buffer.ToArray()
-                Set Buffer = Nothing
+                Set buffer = New clsBuffer
+                buffer.WriteLong CAttack
+                SendData buffer.ToArray()
+                Set buffer = Nothing
             End If
         End If
     End If
@@ -533,8 +533,8 @@ errorhandler:
 End Function
 
 Function CheckDirection(ByVal Direction As Byte) As Boolean
-Dim x As Long
-Dim y As Long
+Dim X As Long
+Dim Y As Long
 Dim i As Long
 
     ' If debug mode, handle error then exit out
@@ -550,36 +550,36 @@ Dim i As Long
 
     Select Case Direction
         Case DIR_UP
-            x = GetPlayerX(MyIndex)
-            y = GetPlayerY(MyIndex) - 1
+            X = GetPlayerX(MyIndex)
+            Y = GetPlayerY(MyIndex) - 1
         Case DIR_DOWN
-            x = GetPlayerX(MyIndex)
-            y = GetPlayerY(MyIndex) + 1
+            X = GetPlayerX(MyIndex)
+            Y = GetPlayerY(MyIndex) + 1
         Case DIR_LEFT
-            x = GetPlayerX(MyIndex) - 1
-            y = GetPlayerY(MyIndex)
+            X = GetPlayerX(MyIndex) - 1
+            Y = GetPlayerY(MyIndex)
         Case DIR_RIGHT
-            x = GetPlayerX(MyIndex) + 1
-            y = GetPlayerY(MyIndex)
+            X = GetPlayerX(MyIndex) + 1
+            Y = GetPlayerY(MyIndex)
     End Select
 
     ' Check to see if the map tile is blocked or not
-    If Map.Tile(x, y).Type = TILE_TYPE_BLOCKED Then
+    If Map.Tile(X, Y).Type = TILE_TYPE_BLOCKED Then
         CheckDirection = True
         Exit Function
     End If
 
     ' Check to see if the map tile is tree or not
-    If Map.Tile(x, y).Type = TILE_TYPE_RESOURCE Then
+    If Map.Tile(X, Y).Type = TILE_TYPE_RESOURCE Then
         CheckDirection = True
         Exit Function
     End If
 
     ' Check to see if the key door is open or not
-    If Map.Tile(x, y).Type = TILE_TYPE_KEY Then
+    If Map.Tile(X, Y).Type = TILE_TYPE_KEY Then
 
         ' This actually checks if its open or not
-        If TempTile(x, y).DoorOpen = 0 Then
+        If TempTile(X, Y).DoorOpen = 0 Then
             CheckDirection = True
             Exit Function
         End If
@@ -588,8 +588,8 @@ Dim i As Long
     ' Check to see if a npc is already on that tile
     For i = 1 To Npc_HighIndex
         If MapNpc(i).num > 0 Then
-            If MapNpc(i).x = x Then
-                If MapNpc(i).y = y Then
+            If MapNpc(i).X = X Then
+                If MapNpc(i).Y = Y Then
                     CheckDirection = True
                     Exit Function
                 End If
@@ -603,8 +603,8 @@ Dim i As Long
     ' Check to see if a player is already on that tile
     For i = 1 To Player_HighIndex
         If IsPlaying(i) And GetPlayerMap(i) = GetPlayerMap(MyIndex) Then
-            If GetPlayerX(i) = x Then
-                If GetPlayerY(i) = y Then
+            If GetPlayerX(i) = X Then
+                If GetPlayerY(i) = Y Then
                     CheckDirection = True
                     Exit Function
                 End If
@@ -737,7 +737,7 @@ errorhandler:
 End Sub
 
 Public Sub ForgetSpell(ByVal spellSlot As Long)
-Dim Buffer As clsBuffer
+Dim buffer As clsBuffer
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
@@ -760,11 +760,11 @@ Dim Buffer As clsBuffer
     End If
     
     If PlayerSpells(spellSlot) > 0 Then
-        Set Buffer = New clsBuffer
-        Buffer.WriteLong CForgetSpell
-        Buffer.WriteLong spellSlot
-        SendData Buffer.ToArray()
-        Set Buffer = Nothing
+        Set buffer = New clsBuffer
+        buffer.WriteLong CForgetSpell
+        buffer.WriteLong spellSlot
+        SendData buffer.ToArray()
+        Set buffer = Nothing
     Else
         AddText "No spell here.", BrightRed
     End If
@@ -778,7 +778,7 @@ errorhandler:
 End Sub
 
 Public Sub CastSpell(ByVal spellSlot As Long)
-Dim Buffer As clsBuffer
+Dim buffer As clsBuffer
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
@@ -804,11 +804,11 @@ Dim Buffer As clsBuffer
     If PlayerSpells(spellSlot) > 0 Then
         If timeGetTime > Player(MyIndex).AttackTimer + 1000 Then
             If Player(MyIndex).Moving = 0 Then
-                Set Buffer = New clsBuffer
-                Buffer.WriteLong CCast
-                Buffer.WriteLong spellSlot
-                SendData Buffer.ToArray()
-                Set Buffer = Nothing
+                Set buffer = New clsBuffer
+                buffer.WriteLong CCast
+                buffer.WriteLong spellSlot
+                SendData buffer.ToArray()
+                Set buffer = Nothing
                 SpellBuffer = spellSlot
                 SpellBufferTimer = timeGetTime
             Else
@@ -828,17 +828,17 @@ errorhandler:
 End Sub
 
 Public Sub ClearTempTile()
-Dim x As Long
-Dim y As Long
+Dim X As Long
+Dim Y As Long
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
     ReDim TempTile(0 To Map.MaxX, 0 To Map.MaxY)
 
-    For x = 0 To Map.MaxX
-        For y = 0 To Map.MaxY
-            TempTile(x, y).DoorOpen = 0
+    For X = 0 To Map.MaxX
+        For Y = 0 To Map.MaxY
+            TempTile(X, Y).DoorOpen = 0
         Next
     Next
 
@@ -933,20 +933,20 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub UpdateSpellWindow(ByVal spellnum As Long, ByVal x As Long, ByVal y As Long)
+Public Sub UpdateSpellWindow(ByVal spellnum As Long, ByVal X As Long, ByVal Y As Long)
 Dim i As Long
     
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
     ' check for off-screen
-    If y + frmMain.picSpellDesc.height > frmMain.ScaleHeight Then
-        y = frmMain.ScaleHeight - frmMain.picSpellDesc.height
+    If Y + frmMain.picSpellDesc.height > frmMain.ScaleHeight Then
+        Y = frmMain.ScaleHeight - frmMain.picSpellDesc.height
     End If
     
     With frmMain
-        .picSpellDesc.top = y
-        .picSpellDesc.Left = x
+        .picSpellDesc.top = Y
+        .picSpellDesc.Left = X
         .picSpellDesc.Visible = True
         
         If LastSpellDesc = spellnum Then Exit Sub
@@ -964,7 +964,7 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub UpdateDescWindow(ByVal itemNum As Long, ByVal x As Long, ByVal y As Long)
+Public Sub UpdateDescWindow(ByVal itemNum As Long, ByVal X As Long, ByVal Y As Long)
 Dim i As Long
 Dim FirstLetter As String * 1
 Dim name As String
@@ -981,16 +981,16 @@ Dim name As String
     End If
     
     ' check for off-screen
-    If y + frmMain.picItemDesc.height > frmMain.ScaleHeight Then
-        y = frmMain.ScaleHeight - frmMain.picItemDesc.height
+    If Y + frmMain.picItemDesc.height > frmMain.ScaleHeight Then
+        Y = frmMain.ScaleHeight - frmMain.picItemDesc.height
     End If
     
     ' set z-order
     frmMain.picItemDesc.ZOrder (0)
 
     With frmMain
-        .picItemDesc.top = y
-        .picItemDesc.Left = x
+        .picItemDesc.top = Y
+        .picItemDesc.Left = X
         .picItemDesc.Visible = True
 
         If LastItemDesc = itemNum Then Exit Sub ' exit out after setting x + y so we don't reset values
@@ -1028,20 +1028,20 @@ errorhandler:
 End Sub
 
 Public Sub CacheResources()
-Dim x As Long, y As Long, Resource_Count As Long
+Dim X As Long, Y As Long, Resource_Count As Long
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
     Resource_Count = 0
 
-    For x = 0 To Map.MaxX
-        For y = 0 To Map.MaxY
-            If Map.Tile(x, y).Type = TILE_TYPE_RESOURCE Then
+    For X = 0 To Map.MaxX
+        For Y = 0 To Map.MaxY
+            If Map.Tile(X, Y).Type = TILE_TYPE_RESOURCE Then
                 Resource_Count = Resource_Count + 1
                 ReDim Preserve MapResource(0 To Resource_Count)
-                MapResource(Resource_Count).x = x
-                MapResource(Resource_Count).y = y
+                MapResource(Resource_Count).X = X
+                MapResource(Resource_Count).Y = Y
             End If
         Next
     Next
@@ -1056,7 +1056,7 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub CreateActionMsg(ByVal message As String, ByVal Color As Integer, ByVal MsgType As Byte, ByVal x As Long, ByVal y As Long)
+Public Sub CreateActionMsg(ByVal message As String, ByVal Color As Integer, ByVal MsgType As Byte, ByVal X As Long, ByVal Y As Long)
 Dim i As Long
 
     ' If debug mode, handle error then exit out
@@ -1071,13 +1071,13 @@ Dim i As Long
         .Type = MsgType
         .Created = timeGetTime
         .Scroll = 1
-        .x = x
-        .y = y
+        .X = X
+        .Y = Y
     End With
 
     If ActionMsg(ActionMsgIndex).Type = ACTIONMSG_SCROLL Then
-        ActionMsg(ActionMsgIndex).y = ActionMsg(ActionMsgIndex).y + Rand(-2, 6)
-        ActionMsg(ActionMsgIndex).x = ActionMsg(ActionMsgIndex).x + Rand(-8, 8)
+        ActionMsg(ActionMsgIndex).Y = ActionMsg(ActionMsgIndex).Y + Rand(-2, 6)
+        ActionMsg(ActionMsgIndex).X = ActionMsg(ActionMsgIndex).X + Rand(-8, 8)
     End If
     
     ' find the new high index
@@ -1098,19 +1098,19 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub ClearActionMsg(ByVal index As Byte)
+Public Sub ClearActionMsg(ByVal Index As Byte)
 Dim i As Long
 
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
-    ActionMsg(index).message = vbNullString
-    ActionMsg(index).Created = 0
-    ActionMsg(index).Type = 0
-    ActionMsg(index).Color = 0
-    ActionMsg(index).Scroll = 0
-    ActionMsg(index).x = 0
-    ActionMsg(index).y = 0
+    ActionMsg(Index).message = vbNullString
+    ActionMsg(Index).Created = 0
+    ActionMsg(Index).Type = 0
+    ActionMsg(Index).Color = 0
+    ActionMsg(Index).Scroll = 0
+    ActionMsg(Index).X = 0
+    ActionMsg(Index).Y = 0
     
     ' find the new high index
     For i = MAX_BYTE To 1 Step -1
@@ -1130,7 +1130,7 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub CheckAnimInstance(ByVal index As Long)
+Public Sub CheckAnimInstance(ByVal Index As Long)
 Dim looptime As Long
 Dim Layer As Long
 Dim FrameCount As Long
@@ -1140,38 +1140,38 @@ Dim lockindex As Long
     If Options.Debug = 1 Then On Error GoTo errorhandler
     
     ' if doesn't exist then exit sub
-    If AnimInstance(index).Animation <= 0 Then Exit Sub
-    If AnimInstance(index).Animation >= MAX_ANIMATIONS Then Exit Sub
+    If AnimInstance(Index).Animation <= 0 Then Exit Sub
+    If AnimInstance(Index).Animation >= MAX_ANIMATIONS Then Exit Sub
     
     For Layer = 0 To 1
-        If AnimInstance(index).Used(Layer) Then
-            looptime = Animation(AnimInstance(index).Animation).looptime(Layer)
-            FrameCount = Animation(AnimInstance(index).Animation).Frames(Layer)
+        If AnimInstance(Index).Used(Layer) Then
+            looptime = Animation(AnimInstance(Index).Animation).looptime(Layer)
+            FrameCount = Animation(AnimInstance(Index).Animation).Frames(Layer)
             
             ' if zero'd then set so we don't have extra loop and/or frame
-            If AnimInstance(index).FrameIndex(Layer) = 0 Then AnimInstance(index).FrameIndex(Layer) = 1
-            If AnimInstance(index).LoopIndex(Layer) = 0 Then AnimInstance(index).LoopIndex(Layer) = 1
+            If AnimInstance(Index).FrameIndex(Layer) = 0 Then AnimInstance(Index).FrameIndex(Layer) = 1
+            If AnimInstance(Index).LoopIndex(Layer) = 0 Then AnimInstance(Index).LoopIndex(Layer) = 1
             
             ' check if frame timer is set, and needs to have a frame change
-            If AnimInstance(index).Timer(Layer) + looptime <= timeGetTime Then
+            If AnimInstance(Index).Timer(Layer) + looptime <= timeGetTime Then
                 ' check if out of range
-                If AnimInstance(index).FrameIndex(Layer) >= FrameCount Then
-                    AnimInstance(index).LoopIndex(Layer) = AnimInstance(index).LoopIndex(Layer) + 1
-                    If AnimInstance(index).LoopIndex(Layer) > Animation(AnimInstance(index).Animation).LoopCount(Layer) Then
-                        AnimInstance(index).Used(Layer) = False
+                If AnimInstance(Index).FrameIndex(Layer) >= FrameCount Then
+                    AnimInstance(Index).LoopIndex(Layer) = AnimInstance(Index).LoopIndex(Layer) + 1
+                    If AnimInstance(Index).LoopIndex(Layer) > Animation(AnimInstance(Index).Animation).LoopCount(Layer) Then
+                        AnimInstance(Index).Used(Layer) = False
                     Else
-                        AnimInstance(index).FrameIndex(Layer) = 1
+                        AnimInstance(Index).FrameIndex(Layer) = 1
                     End If
                 Else
-                    AnimInstance(index).FrameIndex(Layer) = AnimInstance(index).FrameIndex(Layer) + 1
+                    AnimInstance(Index).FrameIndex(Layer) = AnimInstance(Index).FrameIndex(Layer) + 1
                 End If
-                AnimInstance(index).Timer(Layer) = timeGetTime
+                AnimInstance(Index).Timer(Layer) = timeGetTime
             End If
         End If
     Next
     
     ' if neither layer is used, clear
-    If AnimInstance(index).Used(0) = False And AnimInstance(index).Used(1) = False Then ClearAnimInstance (index)
+    If AnimInstance(Index).Used(0) = False And AnimInstance(Index).Used(1) = False Then ClearAnimInstance (Index)
     
     ' Error handler
     Exit Sub
@@ -1236,9 +1236,11 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Function GetBankItemValue(ByVal bankslot As Long) As Long
+Public Function GetBankItemValue(ByVal Index As Long, ByVal bankslot As Long) As Long
     ' If debug mode, handle error then exit out
     If Options.Debug = 1 Then On Error GoTo errorhandler
+    
+    If Index > MAX_PLAYERS Then Exit Function
     
     GetBankItemValue = Bank.Item(bankslot).value
     
@@ -1301,7 +1303,7 @@ errorhandler:
     Exit Function
 End Function
 
-Public Function IsHotbarSlot(ByVal x As Single, ByVal y As Single) As Long
+Public Function IsHotbarSlot(ByVal X As Single, ByVal Y As Single) As Long
 Dim top As Long, Left As Long
 Dim i As Long
 
@@ -1313,8 +1315,8 @@ Dim i As Long
     For i = 1 To MAX_HOTBAR
         top = HotbarTop
         Left = HotbarLeft + ((HotbarOffsetX + 32) * (((i - 1) Mod MAX_HOTBAR)))
-        If x >= Left And x <= Left + PIC_X Then
-            If y >= top And y <= top + PIC_Y Then
+        If X >= Left And X <= Left + PIC_X Then
+            If Y >= top And Y <= top + PIC_Y Then
                 IsHotbarSlot = i
                 Exit Function
             End If
@@ -1329,7 +1331,7 @@ errorhandler:
     Exit Function
 End Function
 
-Public Sub PlayMapSound(ByVal x As Long, ByVal y As Long, ByVal entityType As Long, ByVal entityNum As Long)
+Public Sub PlayMapSound(ByVal X As Long, ByVal Y As Long, ByVal entityType As Long, ByVal entityNum As Long)
 Dim soundName As String
 
     ' If debug mode, handle error then exit out
@@ -1418,14 +1420,14 @@ errorhandler:
     Exit Sub
 End Sub
 
-Public Sub dialogueHandler(ByVal index As Long)
+Public Sub dialogueHandler(ByVal Index As Long)
     ' find out which button
-    If index = 1 Then ' okay button
+    If Index = 1 Then ' okay button
         ' dialogue index
         Select Case dialogueIndex
         
         End Select
-    ElseIf index = 2 Then ' yes button
+    ElseIf Index = 2 Then ' yes button
         ' dialogue index
         Select Case dialogueIndex
             Case DIALOGUE_TYPE_TRADE
@@ -1435,7 +1437,7 @@ Public Sub dialogueHandler(ByVal index As Long)
             Case DIALOGUE_TYPE_PARTY
                 SendAcceptParty
         End Select
-    ElseIf index = 3 Then ' no button
+    ElseIf Index = 3 Then ' no button
         ' dialogue index
         Select Case dialogueIndex
             Case DIALOGUE_TYPE_TRADE
@@ -1534,8 +1536,8 @@ Dim Range As Byte
     
     For i = 1 To MAX_MAP_NPCS
         If MapNpc(i).num > 0 Then
-            TargetX = MapNpc(i).x
-            TargetY = MapNpc(i).y
+            TargetX = MapNpc(i).X
+            TargetY = MapNpc(i).Y
             
             ' Find the difference
             If TargetX < PlayerX Then
